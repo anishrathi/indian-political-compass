@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The 2020s Indian Political Compass</title>
+<meta name="description" content="A 64-question test that maps you across four axes of 2020s Indian politics: Bhakt/Liberandu, Techbro/Neo-Gandhian, Amrit Kaal/Doomer, Davos/Swadeshi." />
+<meta property="og:title" content="The 2020s Indian Political Compass" />
+<meta property="og:description" content="Where do you land in the 2020s Indian political vibes economy? Take the 64-question test." />
+<meta property="og:image" content="og-image.png" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The 2020s Indian Political Compass" />
+<meta name="twitter:description" content="Where do you land in the 2020s Indian political vibes economy? Take the 64-question test." />
+<meta name="twitter:image" content="og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E1428;
+    --ink-2: #161D38;
+    --ink-3: #1E2647;
+    --cream: #F5EFE3;
+    --cream-dim: #C9C2B3;
+    --cream-muted: #8B8676;
+    --red: #D43F3F;
+    --marigold: #E8B647;
+    --teal: #3A9090;
+    --mauve: #B07FAA;
+    --line: rgba(245, 239, 227, 0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(212, 63, 63, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(232, 182, 71, 0.06), transparent 45%);
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .display { font-family: 'Fraunces', serif; letter-spacing: -0.02em; }
+
+  /* ===== LANDING ===== */
+  .landing { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 60px 0; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 24px; }
+  .eyebrow .dot { display: inline-block; width: 6px; height: 6px; background: var(--red); border-radius: 50%; vertical-align: middle; margin-right: 10px; }
+  h1.title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(44px, 9vw, 88px); line-height: 0.92; letter-spacing: -0.035em; margin-bottom: 28px; }
+  h1.title .it { font-style: italic; font-weight: 500; color: var(--marigold); }
+  .lede { font-size: clamp(16px, 2.2vw, 19px); line-height: 1.55; color: var(--cream-dim); max-width: 620px; margin-bottom: 40px; }
+  .lede em { color: var(--cream); font-style: normal; font-weight: 500; border-bottom: 1px dashed rgba(245, 239, 227, 0.4); }
+
+  .axes-preview { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 40px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px 0; }
+  .axis-row { display: grid; grid-template-columns: 28px 1fr auto 1fr; align-items: center; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; }
+  .axis-row .num { color: var(--cream-muted); }
+  .axis-row .left, .axis-row .right { padding: 4px 0; }
+  .axis-row .right { text-align: right; color: var(--cream-dim); }
+  .axis-row .left { font-weight: 700; }
+  .axis-row .vs { color: var(--cream-muted); }
+  .axis-row.r1 .left { color: var(--red); }
+  .axis-row.r2 .left { color: var(--marigold); }
+  .axis-row.r3 .left { color: var(--teal); }
+  .axis-row.r4 .left { color: var(--mauve); }
+
+  .cta { display: inline-flex; align-items: center; gap: 12px; background: var(--cream); color: var(--ink); border: none; padding: 18px 28px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+  .cta:hover { background: var(--marigold); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--red); }
+  .cta:active { transform: translate(0, 0); box-shadow: 0 0 0 var(--red); }
+  .cta-arrow { font-family: 'JetBrains Mono', monospace; font-weight: 400; }
+
+  .footer-note { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--cream-muted); line-height: 1.6; }
+
+  /* ===== TEST ===== */
+  .test { min-height: 100vh; padding: 32px 0 80px; display: none; flex-direction: column; }
+  .test.active { display: flex; }
+  .progress-bar { height: 3px; background: rgba(245, 239, 227, 0.08); position: relative; margin-bottom: 40px; }
+  .progress-fill { height: 100%; background: var(--cream); transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+  .progress-meta { display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 48px; }
+  .progress-meta .axis-label { padding: 6px 12px; border: 1px solid var(--line); font-weight: 600; }
+  .progress-meta .axis-label.a1 { color: var(--red); border-color: rgba(212, 63, 63, 0.6); }
+  .progress-meta .axis-label.a2 { color: var(--marigold); border-color: rgba(232, 182, 71, 0.6); }
+  .progress-meta .axis-label.a3 { color: var(--teal); border-color: rgba(58, 144, 144, 0.6); }
+  .progress-meta .axis-label.a4 { color: var(--mauve); border-color: rgba(176, 127, 170, 0.6); }
+
+  .q-number { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--cream-dim); margin-bottom: 16px; letter-spacing: 0.05em; }
+  .q-text { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(24px, 4vw, 34px); line-height: 1.25; letter-spacing: -0.015em; margin-bottom: 48px; min-height: 100px; }
+  .likert { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 32px; }
+  .likert button { background: transparent; border: 1px solid var(--line); color: var(--cream); padding: 20px 8px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; border-radius: 0; line-height: 1.3; }
+  .likert button:hover { border-color: var(--cream); background: rgba(245, 239, 227, 0.04); }
+  .likert button.selected { background: var(--cream); color: var(--ink); border-color: var(--cream); font-weight: 600; }
+  .likert .label-num { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; margin-bottom: 8px; font-weight: 600; }
+
+  .scale-ends { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 16px; font-weight: 600; }
+
+  .nav { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(--line); gap: 16px; }
+  .nav button { background: transparent; border: none; color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 15px; cursor: pointer; padding: 10px 0; font-weight: 500; }
+  .nav button:hover:not(:disabled) { color: var(--marigold); }
+  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav .skip { color: var(--cream-dim); font-size: 13px; font-weight: 400; }
+  .nav .skip:hover { color: var(--cream); }
+
+  /* ===== RESULTS ===== */
+  .results { display: none; padding: 60px 0 80px; }
+  .results.active { display: block; }
+  .result-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 16px; }
+  .result-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(36px, 7vw, 64px); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 12px; }
+  .result-title .it { font-style: italic; font-weight: 500; color: var(--marigold); }
+  .result-quote { font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--cream-dim); margin-bottom: 8px; }
+  .result-desc { font-size: 15px; line-height: 1.6; color: var(--cream-dim); max-width: 620px; margin-bottom: 40px; }
+
+  .equalizer { margin: 48px 0; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .eq-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 32px; }
+  .eq-axis { margin-bottom: 32px; }
+  .eq-axis:last-child { margin-bottom: 0; }
+  .eq-axis-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.05em; }
+  .eq-axis-header .left { font-weight: 700; }
+  .eq-axis-header .right { color: var(--cream-muted); text-transform: uppercase; }
+  .eq-axis-header .score { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--cream); }
+  .eq-bar { position: relative; height: 8px; background: rgba(245, 239, 227, 0.06); }
+  .eq-bar .center-line { position: absolute; left: 50%; top: -4px; bottom: -4px; width: 1px; background: var(--cream-muted); opacity: 0.4; }
+  .eq-bar .marker { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%; border: 3px solid var(--ink); transition: left 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .eq-axis.a1 .eq-axis-header .left { color: var(--red); }
+  .eq-axis.a1 .marker { background: var(--red); box-shadow: 0 0 24px rgba(212, 63, 63, 0.6); }
+  .eq-axis.a2 .eq-axis-header .left { color: var(--marigold); }
+  .eq-axis.a2 .marker { background: var(--marigold); box-shadow: 0 0 24px rgba(232, 182, 71, 0.6); }
+  .eq-axis.a3 .eq-axis-header .left { color: var(--teal); }
+  .eq-axis.a3 .marker { background: var(--teal); box-shadow: 0 0 24px rgba(58, 144, 144, 0.6); }
+  .eq-axis.a4 .eq-axis-header .left { color: var(--mauve); }
+  .eq-axis.a4 .marker { background: var(--mauve); box-shadow: 0 0 24px rgba(176, 127, 170, 0.6); }
+  .eq-blurb { font-size: 13px; line-height: 1.55; color: var(--cream-dim); margin-top: 10px; max-width: 620px; }
+
+  .nearby { margin: 48px 0; }
+  .nearby-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 24px; }
+  .nearby-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .nearby-item { background: var(--ink); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .nearby-item .name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; }
+  .nearby-item .dist { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cream-muted); }
+
+  .share-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 48px 0 32px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .share-btn { background: transparent; color: var(--cream); border: 1px solid var(--cream); padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; }
+  .share-btn:hover { background: var(--cream); color: var(--ink); }
+  .share-btn.primary { background: var(--cream); color: var(--ink); }
+  .share-btn.primary:hover { background: var(--marigold); }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--cream); color: var(--ink); padding: 14px 24px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; opacity: 0; transition: all 0.3s ease; z-index: 100; }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ===== COPY MODAL ===== */
+  .copy-modal { position: fixed; inset: 0; background: rgba(14, 20, 40, 0.85); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 200; padding: 24px; }
+  .copy-modal.show { display: flex; }
+  .copy-modal-inner { background: var(--ink-2); border: 1px solid var(--line); max-width: 520px; width: 100%; padding: 32px; }
+  .copy-modal h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; margin-bottom: 8px; color: var(--cream); }
+  .copy-modal p { font-size: 14px; color: var(--cream-dim); margin-bottom: 20px; line-height: 1.5; }
+  .copy-modal textarea { width: 100%; min-height: 200px; background: var(--ink); color: var(--cream); border: 1px solid var(--line); padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.55; resize: none; outline: none; }
+  .copy-modal textarea:focus { border-color: var(--cream); }
+  .copy-modal-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+  .copy-modal button { background: transparent; color: var(--cream); border: 1px solid var(--cream); padding: 12px 20px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; }
+  .copy-modal button:hover { background: var(--cream); color: var(--ink); }
+  .copy-modal button.primary { background: var(--cream); color: var(--ink); }
+  .copy-modal button.primary:hover { background: var(--marigold); }
+
+  @media (max-width: 540px) {
+    .likert { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .likert button { padding: 16px 4px; font-size: 12px; }
+    .likert .label-num { font-size: 11px; margin-bottom: 6px; }
+    .axis-row { grid-template-columns: 24px 1fr auto 1fr; gap: 10px; font-size: 11px; }
+    .axes-preview { gap: 8px; }
+    .progress-meta { font-size: 11px; letter-spacing: 0.08em; }
+    .progress-meta .axis-label { padding: 5px 8px; }
+    .nav button { font-size: 14px; }
+    .nav .skip { font-size: 12px; }
+    .scale-ends { font-size: 11px; }
+  }
+
+  /* Subtle landing animation */
+  .fade-in { animation: fadeIn 0.6s ease forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<section id="landing" class="landing">
+  <div class="container fade-in">
+    <div class="eyebrow"><span class="dot"></span>A SILLY PROJECT &nbsp;/&nbsp; 64 QUESTIONS &nbsp;/&nbsp; ~8 MIN</div>
+    <h1 class="title">The 2020s<br/><span class="it">Indian</span> Political<br/>Compass.</h1>
+    <p class="lede">The old left-right axis stopped explaining Indian politics around 2014. What's left is a stranger map: <em>bhakts and liberandus</em>, <em>Bangalore techbros and neo-Gandhians</em>, <em>Amrit Kaal believers and full-time doomers</em>, <em>Davos NRIs and swadeshi nativists</em>. This test plots you across four such axes and tells you which Indian public figure you most resemble.</p>
+
+    <div class="axes-preview">
+      <div class="axis-row r1">
+        <span class="num">01</span>
+        <span class="left">BHAKT</span>
+        <span class="vs">vs</span>
+        <span class="right">LIBERANDU</span>
+      </div>
+      <div class="axis-row r2">
+        <span class="num">02</span>
+        <span class="left">TECHBRO</span>
+        <span class="vs">vs</span>
+        <span class="right">NEO-GANDHIAN</span>
+      </div>
+      <div class="axis-row r3">
+        <span class="num">03</span>
+        <span class="left">AMRIT KAAL</span>
+        <span class="vs">vs</span>
+        <span class="right">DOOMER</span>
+      </div>
+      <div class="axis-row r4">
+        <span class="num">04</span>
+        <span class="left">DAVOS</span>
+        <span class="vs">vs</span>
+        <span class="right">SWADESHI</span>
+      </div>
+    </div>
+
+    <button class="cta" onclick="startTest()">Begin Test <span class="cta-arrow">→</span></button>
+
+    <div class="footer-note">
+      An entirely vibes-based exercise. Inspired by britmonkey.com's 2020s Political Compass. No personal data is collected, sent, or stored. Your answers and result live only in this browser tab. All public figures named in the results are political and cultural figures placed here as caricature and commentary — not endorsements, attributions, or claims about their actual views.
+    </div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section id="test" class="test">
+  <div class="container">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+    <div class="progress-meta">
+      <span id="qCounter">Q01 / 64</span>
+      <span class="axis-label" id="axisLabel">Bhakt — Liberandu</span>
+    </div>
+
+    <div class="q-number mono" id="qNumber">Question 01</div>
+    <div class="q-text" id="qText">Loading...</div>
+
+    <div class="scale-ends">
+      <span>Strongly Disagree</span>
+      <span>Strongly Agree</span>
+    </div>
+    <div class="likert" id="likert">
+      <button data-val="-2"><span class="label-num">-2</span>Strongly<br/>Disagree</button>
+      <button data-val="-1"><span class="label-num">-1</span>Disagree</button>
+      <button data-val="0"><span class="label-num">0</span>Neutral</button>
+      <button data-val="1"><span class="label-num">+1</span>Agree</button>
+      <button data-val="2"><span class="label-num">+2</span>Strongly<br/>Agree</button>
+    </div>
+
+    <div class="nav">
+      <button id="backBtn" onclick="prevQ()">← Back</button>
+      <button class="skip" onclick="skipQ()">Skip / Neutral</button>
+      <button id="nextBtn" onclick="nextQ()" disabled>Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results" class="results">
+  <div class="container">
+    <div class="result-eyebrow">YOUR RESULT</div>
+    <div id="archetypeName" class="result-title">You are most like<br/><span class="it" id="archetypePerson">—</span></div>
+    <div class="result-quote" id="archetypeQuote">—</div>
+    <div class="result-desc" id="archetypeDesc">—</div>
+
+    <div class="equalizer">
+      <div class="eq-title">WHERE YOU LANDED</div>
+
+      <div class="eq-axis a1">
+        <div class="eq-axis-header">
+          <span class="left">BHAKT</span>
+          <span class="score" id="score1">—</span>
+          <span class="right">LIBERANDU</span>
+        </div>
+        <div class="eq-bar"><div class="center-line"></div><div class="marker" id="marker1" style="left: 50%"></div></div>
+        <div class="eq-blurb" id="blurb1">—</div>
+      </div>
+
+      <div class="eq-axis a2">
+        <div class="eq-axis-header">
+          <span class="left">TECHBRO</span>
+          <span class="score" id="score2">—</span>
+          <span class="right">NEO-GANDHIAN</span>
+        </div>
+        <div class="eq-bar"><div class="center-line"></div><div class="marker" id="marker2" style="left: 50%"></div></div>
+        <div class="eq-blurb" id="blurb2">—</div>
+      </div>
+
+      <div class="eq-axis a3">
+        <div class="eq-axis-header">
+          <span class="left">AMRIT KAAL</span>
+          <span class="score" id="score3">—</span>
+          <span class="right">DOOMER</span>
+        </div>
+        <div class="eq-bar"><div class="center-line"></div><div class="marker" id="marker3" style="left: 50%"></div></div>
+        <div class="eq-blurb" id="blurb3">—</div>
+      </div>
+
+      <div class="eq-axis a4">
+        <div class="eq-axis-header">
+          <span class="left">DAVOS</span>
+          <span class="score" id="score4">—</span>
+          <span class="right">SWADESHI</span>
+        </div>
+        <div class="eq-bar"><div class="center-line"></div><div class="marker" id="marker4" style="left: 50%"></div></div>
+        <div class="eq-blurb" id="blurb4">—</div>
+      </div>
+    </div>
+
+    <div class="nearby">
+      <div class="nearby-title">ALSO IN YOUR NEIGHBOURHOOD</div>
+      <div class="nearby-grid" id="nearbyGrid"></div>
+    </div>
+
+    <div class="share-row">
+      <button class="share-btn primary" id="imgBtn" onclick="handleImageShare()">Download image</button>
+      <button class="share-btn" onclick="copyShareText()">Copy result</button>
+      <button class="share-btn" onclick="shareWhatsApp()">WhatsApp</button>
+      <button class="share-btn" onclick="shareTwitter()">X / Twitter</button>
+      <button class="share-btn" onclick="restartTest()">Retake</button>
+    </div>
+
+    <div class="footer-note">
+      Result based on Euclidean distance to 16 archetype coordinates. Archetypes are caricatures placed here as commentary, not endorsements or attributions. No personal data is collected, sent, or stored. Built as a riff on britmonkey.com's 2020s Political Compass.
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast">Result copied to clipboard</div>
+
+<!-- COPY MODAL — shown only if clipboard API and execCommand both fail (e.g. inside a sandboxed iframe) -->
+<div class="copy-modal" id="copyModal" onclick="if (event.target === this) closeCopyModal()">
+  <div class="copy-modal-inner">
+    <h3>Copy your result</h3>
+    <p>Press <strong>Cmd/Ctrl+C</strong> on desktop, or long-press and tap Copy on mobile. The text below is already selected.</p>
+    <textarea id="copyModalText" readonly></textarea>
+    <div class="copy-modal-actions">
+      <button class="primary" onclick="closeCopyModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// QUESTIONS — 64 total, 16 per axis
+// axis: 1=Bhakt/Liberandu, 2=Techbro/Neo-Gandhian, 3=Amrit/Doomer, 4=Davos/Swadeshi
+// dir: +1 means "Agree" pushes toward the SECOND pole (Liberandu, Neo-Gandhian, Doomer, Swadeshi)
+//      -1 means "Agree" pushes toward the FIRST pole (Bhakt, Techbro, Amrit, Davos)
+// ============================================================
+const QUESTIONS = [
+  // --- AXIS 1: BHAKT vs LIBERANDU ---
+  { axis: 1, dir: -1, text: "Cow vigilantism is a clumsy but legitimate response to a real cultural offence." },
+  { axis: 1, dir: +1, text: "A national caste census is essential to delivering meaningful social justice." },
+  { axis: 1, dir: -1, text: "The Mughals were foreign invaders, not legitimate Indian emperors." },
+  { axis: 1, dir: -1, text: "Renaming Allahabad to Prayagraj, Aurangabad to Sambhaji Nagar, etc. corrects historical wrongs." },
+  { axis: 1, dir: +1, text: "Inter-faith couples deserve active legal protection from both their families and the state." },
+  { axis: 1, dir: -1, text: "Films like The Kashmir Files and The Kerala Story tell truths the mainstream media won't." },
+  { axis: 1, dir: +1, text: "NCERT trimming Mughal-era chapters is straightforward historical whitewashing." },
+  { axis: 1, dir: -1, text: "\"Love jihad\" is a real enough phenomenon to warrant specific legislation." },
+  { axis: 1, dir: -1, text: "The bulldozer is, on balance, an appropriate symbol of swift justice." },
+  { axis: 1, dir: +1, text: "Reservations should be expanded — including into the private sector and to cover more groups." },
+  { axis: 1, dir: -1, text: "The Ram Mandir consecration in Ayodhya was a genuine moment of national pride." },
+  { axis: 1, dir: +1, text: "Hijab in a classroom is a personal religious right, not a uniform violation." },
+  { axis: 1, dir: -1, text: "Hindi should be actively promoted as a unifying national language across India." },
+  { axis: 1, dir: +1, text: "Lynching, communal violence and mob justice are quietly being normalised under this government." },
+  { axis: 1, dir: -1, text: "Madrasas should either be brought fully under standard education regulation or shut down." },
+  { axis: 1, dir: +1, text: "India is, structurally, becoming less safe for its religious minorities." },
+
+  // --- AXIS 2: TECHBRO vs NEO-GANDHIAN ---
+  { axis: 2, dir: -1, text: "AI will create more good jobs in India over the next decade than it destroys." },
+  { axis: 2, dir: -1, text: "UPI is genuinely one of the great civilisational contributions of our era." },
+  { axis: 2, dir: -1, text: "Aadhaar's benefits to welfare delivery clearly outweigh its surveillance risks." },
+  { axis: 2, dir: +1, text: "The IIT–IIM pipeline mostly produces management consultants who add no real value to India." },
+  { axis: 2, dir: -1, text: "I'd let my child skip college tomorrow if they had a strong startup idea." },
+  { axis: 2, dir: +1, text: "Bangalore's startup ecosystem is largely a bubble of foreign capital and Twitter PR." },
+  { axis: 2, dir: -1, text: "Crypto is the future of Indian finance whether or not the RBI accepts it." },
+  { axis: 2, dir: +1, text: "Indian villages still hold something cities have permanently lost." },
+  { axis: 2, dir: -1, text: "Bullet trains and 12-lane expressways are worth their environmental cost." },
+  { axis: 2, dir: -1, text: "The Ambanis and Adanis quietly building India's hard infrastructure is, on balance, good for the country." },
+  { axis: 2, dir: -1, text: "I would happily get a brain-computer implant if it became safe and affordable." },
+  { axis: 2, dir: +1, text: "Organic and traditional agriculture should be preserved even at the cost of yield." },
+  { axis: 2, dir: +1, text: "ChatGPT and the like are making young Indians dumber, not smarter." },
+  { axis: 2, dir: +1, text: "Smartphones should be banned outright in schools." },
+  { axis: 2, dir: -1, text: "Driverless cars on Indian roads — eventually — will work out." },
+  { axis: 2, dir: -1, text: "\"Degrowth\" is just a polite phrase for staying poor." },
+
+  // --- AXIS 3: AMRIT KAAL vs DOOMER ---
+  { axis: 3, dir: -1, text: "India will be a fully developed country by 2047." },
+  { axis: 3, dir: -1, text: "The Indian middle class is materially better off today than it was ten years ago." },
+  { axis: 3, dir: -1, text: "Indian institutions — the courts, ECI, RBI — still broadly do their job." },
+  { axis: 3, dir: +1, text: "Mainstream Indian media is now mostly captured by money or the state, or both." },
+  { axis: 3, dir: +1, text: "Selective ED, CBI and IT raids on opposition figures are the new normal, and getting worse." },
+  { axis: 3, dir: -1, text: "The \"Indian dream\" is real — talent and hard work still get you out." },
+  { axis: 3, dir: +1, text: "Most central and state government schemes don't actually reach the people they're meant for." },
+  { axis: 3, dir: +1, text: "India's demographic dividend is being squandered by a real unemployment crisis." },
+  { axis: 3, dir: -1, text: "Chandrayaan, G20, Vande Bharat — these are real markers of national rise, not PR exercises." },
+  { axis: 3, dir: +1, text: "Communal tensions on the ground are quietly worse than the headline India admits." },
+  { axis: 3, dir: +1, text: "Delhi, Mumbai and Bengaluru will be borderline unlivable in 15 years due to pollution and heat." },
+  { axis: 3, dir: -1, text: "Indian IT, pharma and services will continue punching above their weight globally." },
+  { axis: 3, dir: +1, text: "The next generation of Indians will, on average, be worse off than this one." },
+  { axis: 3, dir: +1, text: "Most \"Viksit Bharat\" talk is just election-cycle marketing." },
+  { axis: 3, dir: -1, text: "India is one of the very few major economies with genuine momentum on its side." },
+  { axis: 3, dir: +1, text: "The Indian state is increasingly serving a handful of corporates and almost nobody else." },
+
+  // --- AXIS 4: DAVOS vs SWADESHI ---
+  { axis: 4, dir: -1, text: "India should sign every credible free trade agreement it can get its hands on." },
+  { axis: 4, dir: +1, text: "Foreign retail (Amazon, Walmart, Flipkart) hollowing out the local kirana shop is a real loss." },
+  { axis: 4, dir: -1, text: "It matters far less where a company is headquartered than what it pays and what it builds." },
+  { axis: 4, dir: +1, text: "Foreign-funded NGOs in India are largely a tool of soft-power interference." },
+  { axis: 4, dir: -1, text: "India should align more openly and confidently with the US-led Western bloc." },
+  { axis: 4, dir: +1, text: "Buying cheap Russian oil over Western sanctions is exactly the right call for India." },
+  { axis: 4, dir: -1, text: "English-medium education remains, frankly, non-negotiable for any serious Indian career." },
+  { axis: 4, dir: +1, text: "Pride in Hindi and regional languages should outrank fluency in English in our workforce." },
+  { axis: 4, dir: -1, text: "Brain drain isn't really a problem — Indians abroad send back capital, ideas and connections." },
+  { axis: 4, dir: +1, text: "The diaspora's politics often does more harm than good back in India." },
+  { axis: 4, dir: -1, text: "The IPL becoming a globally watched, globally invested product is unambiguously good." },
+  { axis: 4, dir: +1, text: "Indian films, music and ideas shouldn't have to \"translate\" themselves for the West to feel legitimate." },
+  { axis: 4, dir: -1, text: "India's climate commitments at COP should bind it regardless of historical emissions by the West." },
+  { axis: 4, dir: +1, text: "India should manufacture for India first, and export second." },
+  { axis: 4, dir: +1, text: "WhatsApp, Instagram and Google are fine, but Indian-built alternatives would be meaningfully better." },
+  { axis: 4, dir: -1, text: "Foreign universities (Harvard, Stanford branches) opening Indian campuses would be very welcome." },
+];
+
+// ============================================================
+// ARCHETYPES — 16 figures, one for each combination of the 4 binary poles.
+// Coordinates are on [-100, +100] per axis (negative = first pole, positive = second pole)
+// Order: [axis1, axis2, axis3, axis4]
+// ============================================================
+const ARCHETYPES = [
+  { name: "Nandan Nilekani", coords: [-25, -85, -75, -80], quote: "Aadhaar will save India.", desc: "Soft cultural rootedness, hard tech evangelism, Amrit Kaal personified, and as Davos-fluent as Indians get. You see UPI and DPI as civilisational exports, not surveillance creep. The future is built, and India's building it." },
+  { name: "Nitin Gadkari", coords: [-40, -70, -65, +35], quote: "Expressways and ethanol, ji.", desc: "Tradition-tilted but a builder at heart. EVs, ethanol, eight-lane highways. You believe in India rising, but on India's terms — manufacture here, build here, then trade outward. The rare politician everyone half-likes." },
+  { name: "Subramanian Swamy", coords: [-55, -25, +60, -30], quote: "I have the documents.", desc: "Bhakt with a Harvard CV. Pro-tech and pro-market in principle, but convinced the system is rigged — by the Congress, by the bureaucracy, by the foreigners, by whoever's available. Equal parts ideologue and conspiratorial." },
+  { name: "Arnab Goswami", coords: [-75, -30, +55, +50], quote: "THE NATION WANTS TO KNOW!", desc: "Maximum bhakt energy, tech-curious (Republic Bharat after all), but the entire emotional product is about threat — Pakistan, the deep state, the urban Naxals, the West. Loud, swadeshi-tinted, permanently outraged." },
+  { name: "Sadhguru", coords: [-45, +40, -55, -20], quote: "What IS, IS.", desc: "Spiritually Hindu-coded, gently anti-tech (\"the phone is destroying your spine\"), serenely optimistic about consciousness, and very globally networked. Davos in a dhoti. You don't argue politics, you reframe it." },
+  { name: "Yogi Adityanath", coords: [-85, +30, -45, +65], quote: "Bulldozer chalega.", desc: "The full UP package. Civilisationally Hindu, suspicious of frothy tech (though happy to use it), confident about national rise, and instinctively swadeshi. Order, religion, infrastructure, in that order." },
+  { name: "Vivek Agnihotri", coords: [-70, +50, +65, -25], quote: "The truth they don't want you to see.", desc: "Hindutva-flavoured but with a deep doomer streak — convinced of suppressed truths, hostile elites, cultural decline. You quote Soros and Sanatan in the same breath. Internationally engaged precisely because you think the world is against India." },
+  { name: "Kangana Ranaut", coords: [-65, +35, +50, +60], quote: "I am the only honest one here.", desc: "Tradition-leaning, suspicious of tech and \"woke\" celebrity culture, persuaded that the system is rotten everywhere except in your own integrity. Loudly swadeshi. Picks fights with the same energy as winning them." },
+  { name: "Shashi Tharoor", coords: [+60, -55, -25, -75], quote: "An entirely unexceptionable proposition.", desc: "The cosmopolitan liberal centre. Comfortable with technology, broadly hopeful about India, fluent in English, the Oxford Union and the Lok Sabha. You think the answer is institutions, eloquence, and slightly better Twitter discourse." },
+  { name: "Mahua Moitra", coords: [+65, -45, +30, +30], quote: "I will not be intimidated.", desc: "Sharp liberal, tech-literate, but a doomer about the direction of the Indian state. Roots are desi even if the wardrobe isn't. You see institutional capture clearly and refuse to be polite about it." },
+  { name: "Dhruv Rathee", coords: [+70, -65, +60, -40], quote: "Namaskar doston.", desc: "The diaspora liberal explainer. Pro-EV, pro-renewables, pro-tech, but constructed an entire YouTube empire on the thesis that Indian democracy is in real trouble. Globally minded, German-resident, India-obsessed." },
+  { name: "Akash Banerjee", coords: [+55, -35, +70, +25], quote: "Theek hai bhai.", desc: "The satirical liberal. Tech-savvy enough to run a media operation, but the comedy comes from a deep belief that the system is broken, captured and absurd. Desi-rooted, with no particular love for the global elite either." },
+  { name: "Sonam Wangchuk", coords: [+45, +70, -30, -20], quote: "Save the Himalayas.", desc: "The hopepilled neo-Gandhian. Engineer by training, climate activist by calling, globally respected but deeply rooted in Ladakh. You believe in appropriate technology, low-footprint living, and that change still happens through fasting and walking." },
+  { name: "Yogendra Yadav", coords: [+55, +55, +20, +55], quote: "Swaraj first.", desc: "The principled, slightly weary, civil-society liberal. Suspicious of Big Tech and Big Capital alike, swadeshi in instinct, mixed on whether India is rising or fraying. You write op-eds, lose elections, and keep going." },
+  { name: "Arundhati Roy", coords: [+80, +75, +85, -15], quote: "Another world is on her way.", desc: "Full-throated dissident. Anti-Hindutva, anti-development, anti-Adani, anti-state. Globally networked because the Indian establishment has largely shut you out. You believe the official story of India is, almost entirely, a lie." },
+  { name: "Ravish Kumar", coords: [+60, +45, +75, +45], quote: "Sawaal puchiye.", desc: "The melancholic conscience. Liberal, instinctively suspicious of tech-bro futurism, convinced that the institutions are quietly failing, and rooted in a Hindi-public-broadcasting tradition rather than the global English commentariat. You don't shout, you ask." },
+];
+
+// ============================================================
+// AXIS METADATA
+// ============================================================
+const AXES = [
+  { id: 1, leftLabel: "BHAKT", rightLabel: "LIBERANDU", leftNice: "Bhakt", rightNice: "Liberandu", short: "Bhakt — Liberandu",
+    leftBlurb: "You're squarely on the Hindu nationalist / cultural traditionalist side — sympathetic to majoritarian assertion, bulldozer governance, the Ram Mandir moment, and skeptical of the secular-liberal frame.",
+    rightBlurb: "You're firmly on the secular-liberal / progressive side — pro-minority rights, anti-majoritarian, sceptical of cow politics and renamings, sympathetic to caste-based redress.",
+    centerBlurb: "You sit close to the middle on culture — sympathetic to some bhakt arguments, some liberal ones, refusing the full team jersey." },
+  { id: 2, leftLabel: "TECHBRO", rightLabel: "NEO-GANDHIAN", leftNice: "Techbro", rightNice: "Neo-Gandhian", short: "Techbro — Neo-Gandhian",
+    leftBlurb: "Full Bangalore-pilled. AI is good, UPI is divine, crypto is coming, and the answer to most Indian problems is more, faster, better tech and capital.",
+    rightBlurb: "You're with the neo-Gandhians — suspicious of techbro futurism, protective of villages, languages, soil and slowness. You think the IIT pipeline produces consultants, not civilisations.",
+    centerBlurb: "You like the gadgets but distrust the gospel — open to AI and UPI, unconvinced that more tech automatically equals more good." },
+  { id: 3, leftLabel: "AMRIT KAAL", rightLabel: "DOOMER", leftNice: "Amrit Kaal", rightNice: "Doomer", short: "Amrit Kaal — Doomer",
+    leftBlurb: "You're an Amrit Kaal believer. India is rising, the institutions broadly work, the middle class is better off, and Chandrayaan / G20 / Vande Bharat aren't PR — they're proof.",
+    rightBlurb: "You're a full system-is-rotting doomer. Captured media, weaponised agencies, jobless growth, communalism normalised, corporates running the state. You don't buy the Viksit Bharat slogan.",
+    centerBlurb: "You see both the genuine momentum and the genuine rot, and refuse to pretend either away." },
+  { id: 4, leftLabel: "DAVOS", rightLabel: "SWADESHI", leftNice: "Davos", rightNice: "Swadeshi", short: "Davos — Swadeshi",
+    leftBlurb: "Davos-aligned globalist. FTAs, foreign universities, Western alignment, English fluency, the IPL as a global product. You think India wins by being more connected, not more closed.",
+    rightBlurb: "Swadeshi-coded. Suspicious of foreign capital, foreign NGOs, foreign tech and the diaspora's politics. Manufacture for India first, language pride matters, the kirana is worth defending.",
+    centerBlurb: "You're a pragmatic mix — global where it pays, swadeshi where it matters. Not a flag for either camp." },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentQ = 0;
+let answers = new Array(QUESTIONS.length).fill(null); // -2, -1, 0, 1, 2 or null
+
+// ============================================================
+// FLOW
+// ============================================================
+function startTest() {
+  document.getElementById('landing').style.display = 'none';
+  const testEl = document.getElementById('test');
+  testEl.classList.add('active');
+  currentQ = 0;
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const axis = AXES.find(a => a.id === q.axis);
+  document.getElementById('qNumber').textContent = `Question ${String(currentQ + 1).padStart(2, '0')}`;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qCounter').textContent = `Q${String(currentQ + 1).padStart(2, '0')} / ${QUESTIONS.length}`;
+  document.getElementById('progressFill').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+
+  const axisLabel = document.getElementById('axisLabel');
+  axisLabel.textContent = axis.short;
+  axisLabel.className = `axis-label a${q.axis}`;
+
+  // Likert state
+  document.querySelectorAll('.likert button').forEach(btn => {
+    btn.classList.remove('selected');
+    if (parseInt(btn.dataset.val) === answers[currentQ]) {
+      btn.classList.add('selected');
+    }
+  });
+
+  document.getElementById('backBtn').disabled = (currentQ === 0);
+  document.getElementById('nextBtn').disabled = (answers[currentQ] === null);
+  document.getElementById('nextBtn').textContent = (currentQ === QUESTIONS.length - 1) ? 'See result →' : 'Next →';
+}
+
+let advanceTimeout = null;
+
+document.querySelectorAll('.likert button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = parseInt(btn.dataset.val);
+    answers[currentQ] = val;
+    document.querySelectorAll('.likert button').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('nextBtn').disabled = false;
+    if (advanceTimeout) clearTimeout(advanceTimeout);
+    advanceTimeout = setTimeout(() => {
+      advanceTimeout = null;
+      if (answers[currentQ] !== null) nextQ();
+    }, 280);
+  });
+});
+
+function prevQ() {
+  if (advanceTimeout) { clearTimeout(advanceTimeout); advanceTimeout = null; }
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+function nextQ() {
+  if (advanceTimeout) { clearTimeout(advanceTimeout); advanceTimeout = null; }
+  if (answers[currentQ] === null) return;
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    finishTest();
+  }
+}
+
+function skipQ() {
+  if (advanceTimeout) { clearTimeout(advanceTimeout); advanceTimeout = null; }
+  answers[currentQ] = 0;
+  nextQ();
+}
+
+// ============================================================
+// SCORING
+// ============================================================
+function computeScores() {
+  // Returns scores per axis on [-100, +100]
+  const scores = [0, 0, 0, 0];
+  const counts = [0, 0, 0, 0];
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    const q = QUESTIONS[i];
+    const a = answers[i] ?? 0;
+    scores[q.axis - 1] += a * q.dir;
+    counts[q.axis - 1]++;
+  }
+  // Each axis has 16 questions, max raw = 16*2 = 32; normalise to -100..+100
+  return scores.map((s, i) => Math.round((s / (counts[i] * 2)) * 100));
+}
+
+function findNearestArchetype(scores) {
+  return ARCHETYPES.map(a => {
+    const d = Math.sqrt(
+      Math.pow(scores[0] - a.coords[0], 2) +
+      Math.pow(scores[1] - a.coords[1], 2) +
+      Math.pow(scores[2] - a.coords[2], 2) +
+      Math.pow(scores[3] - a.coords[3], 2)
+    );
+    return { ...a, dist: d };
+  }).sort((x, y) => x.dist - y.dist);
+}
+
+function scoreLabel(score, axis) {
+  const ax = AXES[axis];
+  const absScore = Math.abs(score);
+  if (absScore < 15) return `Centrist (${score > 0 ? '+' : ''}${score})`;
+  let intensity;
+  if (absScore < 40) intensity = "Leaning";
+  else if (absScore < 70) intensity = "Solid";
+  else intensity = "Hardcore";
+  const pole = score < 0 ? ax.leftNice : ax.rightNice;
+  return `${intensity} ${pole} (${score > 0 ? '+' : ''}${score})`;
+}
+
+function blurbFor(score, axis) {
+  const ax = AXES[axis];
+  if (Math.abs(score) < 15) return ax.centerBlurb;
+  return score < 0 ? ax.leftBlurb : ax.rightBlurb;
+}
+
+function finishTest() {
+  const scores = computeScores();
+  const ranked = findNearestArchetype(scores);
+  const best = ranked[0];
+
+  document.getElementById('archetypePerson').textContent = best.name;
+  document.getElementById('archetypeQuote').textContent = `"${best.quote}"`;
+  document.getElementById('archetypeDesc').textContent = best.desc;
+
+  // Equalizer
+  for (let i = 0; i < 4; i++) {
+    const score = scores[i];
+    const pct = ((score + 100) / 200) * 100;
+    document.getElementById(`marker${i+1}`).style.left = `${pct}%`;
+    document.getElementById(`score${i+1}`).textContent = scoreLabel(score, i);
+    document.getElementById(`blurb${i+1}`).textContent = blurbFor(score, i);
+  }
+
+  // Nearby archetypes (next 3)
+  const grid = document.getElementById('nearbyGrid');
+  grid.innerHTML = '';
+  ranked.slice(1, 5).forEach(a => {
+    const item = document.createElement('div');
+    item.className = 'nearby-item';
+    item.innerHTML = `<span class="name">${a.name}</span><span class="dist">distance ${Math.round(a.dist)}</span>`;
+    grid.appendChild(item);
+  });
+
+  // Show results
+  document.getElementById('test').classList.remove('active');
+  document.getElementById('results').classList.add('active');
+
+  // Store for sharing
+  window.__lastResult = { scores, best, ranked };
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartTest() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  currentQ = 0;
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('landing').style.display = 'flex';
+  window.scrollTo(0, 0);
+}
+
+// ============================================================
+// SHARING
+// ============================================================
+function buildShareText() {
+  const r = window.__lastResult;
+  if (!r) return '';
+  const [s1, s2, s3, s4] = r.scores;
+  return `My 2020s Indian Political Compass result:
+
+I am most like → ${r.best.name}
+
+• Bhakt ←→ Liberandu: ${s1 > 0 ? '+' : ''}${s1}
+• Techbro ←→ Neo-Gandhian: ${s2 > 0 ? '+' : ''}${s2}
+• Amrit Kaal ←→ Doomer: ${s3 > 0 ? '+' : ''}${s3}
+• Davos ←→ Swadeshi: ${s4 > 0 ? '+' : ''}${s4}
+
+Take it: ${window.location.href}`;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function copyShareText() {
+  const text = buildShareText();
+  tryClipboard(text).then(ok => {
+    if (ok) {
+      showToast('Result copied to clipboard');
+    } else {
+      openCopyModal(text);
+    }
+  });
+}
+
+function tryClipboard(text) {
+  // Layer 1: modern async clipboard API (works on HTTPS + user-gesture + non-sandboxed)
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text)
+      .then(() => true)
+      .catch(() => tryExecCopy(text));
+  }
+  return tryExecCopy(text);
+}
+
+function tryExecCopy(text) {
+  // Layer 2: hidden textarea + execCommand (works in older browsers + most contexts)
+  return new Promise(resolve => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.top = '0';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+
+    const isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent);
+    if (isIOS) {
+      // iOS Safari needs contentEditable + range selection
+      ta.contentEditable = 'true';
+      ta.readOnly = false;
+      const range = document.createRange();
+      range.selectNodeContents(ta);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ta.setSelectionRange(0, 999999);
+    } else {
+      ta.focus();
+      ta.select();
+    }
+
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    resolve(ok);
+  });
+}
+
+function openCopyModal(text) {
+  // Layer 3: foolproof manual select — shows text in a textarea, user copies natively
+  const modal = document.getElementById('copyModal');
+  const ta = document.getElementById('copyModalText');
+  ta.value = text;
+  modal.classList.add('show');
+  // Defer focus + select so the modal is painted
+  setTimeout(() => {
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+  }, 50);
+}
+
+function closeCopyModal() {
+  document.getElementById('copyModal').classList.remove('show');
+}
+
+function shareWhatsApp() {
+  const text = encodeURIComponent(buildShareText());
+  window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+function shareTwitter() {
+  const r = window.__lastResult;
+  if (!r) return;
+  const short = `I'm most like ${r.best.name} on the 2020s Indian Political Compass. Where do you land?`;
+  const text = encodeURIComponent(short);
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+// ============================================================
+// PNG GENERATION — draws a 1080x1350 poster on canvas
+// ============================================================
+function wrapLines(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (const w of words) {
+    const test = line ? line + ' ' + w : w;
+    if (ctx.measureText(test).width > maxWidth) {
+      if (line) lines.push(line);
+      line = w;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function fitText(ctx, text, maxWidth, baseSize, fontSpec, minSize) {
+  // Shrink font size until text fits maxWidth, returning the size to use.
+  let size = baseSize;
+  while (size > minSize) {
+    ctx.font = fontSpec(size);
+    if (ctx.measureText(text).width <= maxWidth) return size;
+    size -= 2;
+  }
+  return minSize;
+}
+
+async function generatePNG() {
+  // Preload custom fonts before drawing
+  try {
+    await Promise.all([
+      document.fonts.load('900 96px "Fraunces"'),
+      document.fonts.load('italic 900 96px "Fraunces"'),
+      document.fonts.load('italic 500 32px "Fraunces"'),
+      document.fonts.load('italic 500 28px "Fraunces"'),
+      document.fonts.load('700 22px "JetBrains Mono"'),
+      document.fonts.load('500 18px "JetBrains Mono"'),
+      document.fonts.load('400 22px "Inter"'),
+    ]);
+    await document.fonts.ready;
+  } catch (e) { /* fall back to system fonts */ }
+
+  const W = 1080, H = 1620;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Background ink
+  ctx.fillStyle = '#0E1428';
+  ctx.fillRect(0, 0, W, H);
+
+  // Red top-left radial wash
+  let g = ctx.createRadialGradient(W * 0.15, H * 0.08, 0, W * 0.15, H * 0.08, W * 0.7);
+  g.addColorStop(0, 'rgba(212, 63, 63, 0.14)');
+  g.addColorStop(1, 'rgba(212, 63, 63, 0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  // Marigold bottom-right radial wash
+  g = ctx.createRadialGradient(W * 0.85, H * 0.92, 0, W * 0.85, H * 0.92, W * 0.7);
+  g.addColorStop(0, 'rgba(232, 182, 71, 0.10)');
+  g.addColorStop(1, 'rgba(232, 182, 71, 0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  const PAD = 80;
+  const r = window.__lastResult;
+  if (!r) return canvas;
+
+  // Top eyebrow
+  ctx.fillStyle = '#D43F3F';
+  ctx.beginPath();
+  ctx.arc(PAD + 5, PAD + 9, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#8B8676';
+  ctx.font = '600 18px "JetBrains Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+  ctx.fillText('THE 2020s INDIAN POLITICAL COMPASS', PAD + 22, PAD + 10);
+
+  // "I AM MOST LIKE" label
+  ctx.fillStyle = '#C9C2B3';
+  ctx.font = '500 22px "JetBrains Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'top';
+  ctx.fillText('I AM MOST LIKE', PAD, PAD + 50);
+
+  // Big name (italic marigold) — auto-fit
+  const nameSize = fitText(
+    ctx, r.best.name, W - PAD * 2, 104,
+    (s) => `italic 900 ${s}px "Fraunces", Georgia, serif`,
+    56
+  );
+  ctx.fillStyle = '#E8B647';
+  ctx.font = `italic 900 ${nameSize}px "Fraunces", Georgia, serif`;
+  ctx.fillText(r.best.name, PAD, PAD + 100);
+
+  // Quote (italic, dim)
+  ctx.fillStyle = '#C9C2B3';
+  ctx.font = 'italic 500 30px "Fraunces", Georgia, serif';
+  const quoteText = `"${r.best.quote}"`;
+  ctx.fillText(quoteText, PAD, PAD + 240);
+
+  // Description (wrapped, max 3 lines)
+  ctx.fillStyle = '#C9C2B3';
+  ctx.font = '400 22px "Inter", system-ui, sans-serif';
+  const descLines = wrapLines(ctx, r.best.desc, W - PAD * 2).slice(0, 3);
+  // If clipped, add ellipsis
+  const fullLines = wrapLines(ctx, r.best.desc, W - PAD * 2);
+  if (fullLines.length > 3) {
+    descLines[2] = descLines[2].replace(/[.,;\s]+$/, '') + '…';
+  }
+  let dy = PAD + 300;
+  descLines.forEach(line => {
+    ctx.fillText(line, PAD, dy);
+    dy += 32;
+  });
+
+  // Divider
+  const dividerY = 540;
+  ctx.strokeStyle = 'rgba(245, 239, 227, 0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(PAD, dividerY);
+  ctx.lineTo(W - PAD, dividerY);
+  ctx.stroke();
+
+  // Section label
+  ctx.fillStyle = '#8B8676';
+  ctx.font = '600 18px "JetBrains Mono", ui-monospace, monospace';
+  ctx.fillText('WHERE I LANDED', PAD, dividerY + 24);
+
+  // 4 axis bars
+  const axisColors = ['#D43F3F', '#E8B647', '#3A9090', '#B07FAA'];
+  const axisLabels = [
+    ['BHAKT', 'LIBERANDU'],
+    ['TECHBRO', 'NEO-GANDHIAN'],
+    ['AMRIT KAAL', 'DOOMER'],
+    ['DAVOS', 'SWADESHI'],
+  ];
+
+  const barsStart = dividerY + 80;
+  const rowHeight = 138;
+
+  for (let i = 0; i < 4; i++) {
+    const rowY = barsStart + i * rowHeight;
+    const score = r.scores[i];
+
+    // Left label (colored)
+    ctx.fillStyle = axisColors[i];
+    ctx.font = '700 22px "JetBrains Mono", ui-monospace, monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText(axisLabels[i][0], PAD, rowY);
+
+    // Right label (muted)
+    ctx.fillStyle = '#8B8676';
+    ctx.textAlign = 'right';
+    ctx.fillText(axisLabels[i][1], W - PAD, rowY);
+
+    // Score in center
+    ctx.fillStyle = '#F5EFE3';
+    ctx.font = 'italic 500 24px "Fraunces", Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${score > 0 ? '+' : ''}${score}`, W / 2, rowY);
+
+    // Bar background
+    const barY = rowY + 56;
+    const barW = W - PAD * 2;
+    ctx.fillStyle = 'rgba(245, 239, 227, 0.08)';
+    ctx.fillRect(PAD, barY, barW, 8);
+
+    // Center tick
+    ctx.fillStyle = 'rgba(245, 239, 227, 0.35)';
+    ctx.fillRect(W / 2 - 1, barY - 5, 2, 18);
+
+    // Marker glow
+    const mx = PAD + ((score + 100) / 200) * barW;
+    const my = barY + 4;
+    const gg = ctx.createRadialGradient(mx, my, 0, mx, my, 45);
+    gg.addColorStop(0, axisColors[i]);
+    gg.addColorStop(0.3, axisColors[i] + 'AA');
+    gg.addColorStop(1, axisColors[i] + '00');
+    ctx.fillStyle = gg;
+    ctx.beginPath();
+    ctx.arc(mx, my, 45, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Marker dot with ring
+    ctx.fillStyle = axisColors[i];
+    ctx.beginPath();
+    ctx.arc(mx, my, 13, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#0E1428';
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.arc(mx, my, 13, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // ===== NEIGHBOURHOOD SECTION =====
+  const nbDividerY = 1200;
+  ctx.strokeStyle = 'rgba(245, 239, 227, 0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(PAD, nbDividerY);
+  ctx.lineTo(W - PAD, nbDividerY);
+  ctx.stroke();
+
+  ctx.fillStyle = '#8B8676';
+  ctx.font = '600 18px "JetBrains Mono", ui-monospace, monospace';
+  ctx.textBaseline = 'top';
+  ctx.textAlign = 'left';
+  ctx.fillText('ALSO IN MY NEIGHBOURHOOD', PAD, nbDividerY + 24);
+
+  const nearby = (r.ranked || []).slice(1, 5);
+  const nbStartY = nbDividerY + 80;
+  const nbRowH = 56;
+  nearby.forEach((a, idx) => {
+    const ry = nbStartY + idx * nbRowH;
+
+    // Row divider (between rows)
+    if (idx > 0) {
+      ctx.strokeStyle = 'rgba(245, 239, 227, 0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(PAD, ry - 4);
+      ctx.lineTo(W - PAD, ry - 4);
+      ctx.stroke();
+    }
+
+    // Name (Fraunces, left)
+    ctx.fillStyle = '#F5EFE3';
+    ctx.font = '500 26px "Fraunces", Georgia, serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(a.name, PAD, ry + nbRowH / 2 - 4);
+
+    // Distance (mono, right)
+    ctx.fillStyle = '#8B8676';
+    ctx.font = '500 15px "JetBrains Mono", ui-monospace, monospace';
+    ctx.textAlign = 'right';
+    ctx.fillText(`distance ${Math.round(a.dist)}`, W - PAD, ry + nbRowH / 2 - 4);
+  });
+
+  // Footer
+  ctx.textBaseline = 'alphabetic';
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#8B8676';
+  ctx.font = '500 16px "JetBrains Mono", ui-monospace, monospace';
+  ctx.fillText('TAKE THE TEST', PAD, H - PAD - 14);
+
+  ctx.fillStyle = '#F5EFE3';
+  ctx.font = '500 20px "JetBrains Mono", ui-monospace, monospace';
+  const hostText = (window.location && window.location.host) ? window.location.host : 'indian-political-compass';
+  ctx.fillText(hostText, PAD, H - PAD + 14);
+
+  // Right-aligned tiny mark
+  ctx.fillStyle = '#8B8676';
+  ctx.font = 'italic 500 16px "Fraunces", Georgia, serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('a silly project', W - PAD, H - PAD + 14);
+
+  return canvas;
+}
+
+async function canvasToBlob(canvas) {
+  return new Promise(resolve => canvas.toBlob(resolve, 'image/png', 1.0));
+}
+
+async function handleImageShare() {
+  const btn = document.getElementById('imgBtn');
+  const orig = btn.textContent;
+  btn.textContent = 'Rendering…';
+  btn.disabled = true;
+
+  try {
+    const canvas = await generatePNG();
+    const blob = await canvasToBlob(canvas);
+    const filename = `indian-political-compass-${window.__lastResult.best.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`;
+    const file = new File([blob], filename, { type: 'image/png' });
+
+    // Try native share with file (mobile)
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: 'My 2020s Indian Political Compass result',
+          text: `I'm most like ${window.__lastResult.best.name}.`,
+        });
+        showToast('Shared');
+      } catch (err) {
+        // User cancelled — fall back to download
+        if (err.name !== 'AbortError') triggerDownload(blob, filename);
+      }
+    } else {
+      triggerDownload(blob, filename);
+      showToast('Image downloaded');
+    }
+  } catch (e) {
+    showToast('Image render failed');
+    console.error(e);
+  } finally {
+    btn.textContent = orig;
+    btn.disabled = false;
+  }
+}
+
+function triggerDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+</script>
+<!-- =====================================================
+     CLOUDFLARE WEB ANALYTICS
+     1. Go to dash.cloudflare.com → Analytics & Logs → Web Analytics
+     2. Click "Add a site" and paste your eventual domain
+     3. Cloudflare gives you a token (looks like a 32-char hex string)
+     4. Paste it below in place of YOUR_CF_TOKEN_HERE
+     5. Delete this comment block
+     ===================================================== -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CF_TOKEN_HERE"}'></script>
+
+</body>
+</html>
